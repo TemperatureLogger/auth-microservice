@@ -1,7 +1,7 @@
 version: "3.7"
 
 services:
-  library-db:
+  auth-db:
     image: postgres
     environment:
       POSTGRES_USER: ${PGUSER}
@@ -15,7 +15,7 @@ services:
       - auth-database:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       
-  library-pgadmin:
+  auth-pgadmin:
     image: dpage/pgadmin4
     ports:
       - "30002:80"
