@@ -1,0 +1,33 @@
+{
+  "name": "auth-microservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "start.js",
+  "scripts": {
+    "start-dev-docker": "nodemon start.js",
+    "start-dev": "nodemon -r dotenv/config start.js",
+    "start": "node start.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TemperatureLogger/auth-microservice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TemperatureLogger/auth-microservice/issues"
+  },
+  "homepage": "https://github.com/TemperatureLogger/auth-microservice#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^9.0.1",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "helmet": "^4.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "log-timestamp": "^0.3.0",
+    "morgan": "^1.10.0",
+    "pg": "^8.6.0"
+  }
+}
