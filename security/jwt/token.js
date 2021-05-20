@@ -1,13 +1,14 @@
 // https://www.npmjs.com/package/jsonwebtoken
-const jwt = require(jwt)
+const jwt = require('jsonwebtoken');
 
-const { token } = require('morgan');
+// const { JsonWebTokenError } = require('jsonwebtoken');
+// const { token } = require('morgan');
 const { ServerError } = require('../../errors');
 
 const generalOptions = {
     issuer: 'TempLogger',
     subject: 'Auth Token',
-    audince: 'Users'
+    audience: 'Users'
 };
 
 const jwtKey = process.env.NODE_ENV === 'development' ?
@@ -28,7 +29,7 @@ const generateToken = async (payload) => {
     }
 };
 
-const verifyAndDecode = async (token, ignoreExpiration = false) {
+const verifyAndDecode = async (token, ignoreExpiration = false) => {
     try {
         const decodingOptions = { ...generalOptions, ignoreExpiration};
         const decodedToken = await jwt.verify(token, jwtKey, decodingOptions);

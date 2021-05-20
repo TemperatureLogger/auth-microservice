@@ -12,12 +12,12 @@ const hash = async (plainTextPass) => {
 }
 
 // compare hashed password with a plaintext password
-const compare = async (plaintTextPass, hashedPass) => {
-    const isCorrect = await bcryptjs..compare(plaintTextPass, hashedPass);
+const compare = async (plainTextPass, hashedPass) => {
+    const isCorrect = await bcryptjs.compare(plainTextPass, hashedPass);
     return isCorrect;
 };
 
 module.exports = {
     hash,
     compare
-} 
+}
