@@ -22,7 +22,7 @@ const authorizeAndExtract = async (req, res, next) => {
 
         // transmit information to the next middleware in `state` field
         req.state = {
-            decoded
+            decodedToken
         };
 
         // continue to next middleware
