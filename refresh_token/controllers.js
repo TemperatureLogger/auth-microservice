@@ -17,7 +17,7 @@ const {
 Router.get('/refresh', authorizeAndExtract, async (req, res) => {
     const {
         userId
-    } = req.state.decoded;
+    } = req.state.decodedToken;
 
     const token = await refresh(userId);
 
