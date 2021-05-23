@@ -30,3 +30,7 @@ Jwt subdirectory contains:
 - filters - middlewares for routes
 - token - for signing and decoding
 - models - what i am working with. For a better understanding of the code
+
+
+GET ROLE -- who the fuck are you?
+need to implement a request from database to check if is admin
