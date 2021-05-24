@@ -7,7 +7,7 @@ const {
 
 const {
     refresh,
-    getRole
+    getSerialNumber,
 } = require('./services.js');
 
 /*
@@ -19,10 +19,11 @@ const {
  */
 Router.get('/refresh', authorizeAndExtractNoExpiration, async (req, res) => {
     const {
-        userId
+        userId,
+        serialNumber
     } = req.state.decodedToken;
 
-    const token = await refresh(userId);
+    const token = await refresh(userId, serialNumber);
 
     res.json({token});
 });
@@ -34,14 +35,17 @@ Router.get('/refresh', authorizeAndExtractNoExpiration, async (req, res) => {
  */
 Router.get('/authorize', authorizeAndExtract, async (req, res) => {
     const {
-        userId
+        userId,
+        serialNumber
     } = req.state.decodedToken;
 
-    const role = await getRole(userId);
+    console.info(`User id is ${userId}`);
+
+    const userSerialNumber = await getSerialNumber(userId);
 
     res.json({
         userId,
-        role
+        userSerialNumber
     });
 });
 

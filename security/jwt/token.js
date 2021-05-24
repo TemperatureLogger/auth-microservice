@@ -18,7 +18,7 @@ const jwtKey = process.env.NODE_ENV === 'development' ?
 
 const generateToken = async (payload) => {
     try {
-        const encodingOptions = { ...generalOptions, expiresIn: process.env.JWT_EXPIRE_TIME || '2h'};
+        const encodingOptions = { ...generalOptions, expiresIn: process.env.JWT_EXPIRE_TIME || '1h'};
         const token = await jwt.sign(payload.toJson(), jwtKey, encodingOptions);
 
         return token;

@@ -15,34 +15,26 @@ const {
 Router.post('/', async (req, res) => {
 
     const {
-        email,
-        password
+        username,
+        password,
+        serialNumber
     } = req.body;
 
     // console.info(`Body is: ${req.body.password}`);
     console.log(JSON.stringify(req.body))
 
-    if (!email.includes('@')) {
-        throw new ServerError('Invalid email', 400);
-    }
-
-    const token = await register(email, password);
+    const token = await register(username, password, serialNumber);
     res.json({token});
 });
 
 // login
 Router.post('/login', async (req, res) => {
     const {
-        email,
+        username,
         password
     } = req.body;
 
-    if (!email.includes("@")) {
-        throw new ServerError('Invalid email', 400);
-    }
-
-
-    const token = await login(email, password);
+    const token = await login(username, password);
     res.json({token});
 });
 
