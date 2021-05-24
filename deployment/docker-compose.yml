@@ -1,0 +1,49 @@
+version: "3.7"
+
+services:
+  auth-service:
+    build: '../'
+    ports:
+      - "3001:80"
+    environment:
+      NODE_ENV: development
+      PGHOST: db
+      PGUSER: ${PGUSER}
+      PGPASSWORD: ${PGPASSWORD}
+      PGPORT: 5432
+      PGDATABASE: ${PGDATABASE}
+    volumes:
+      - ../:/usr/src/app  
+    command: ["npm", "run", "start-dev-docker"]
+    networks:
+      - auth-network
+
+  auth-db:
+    image: postgres
+    environment:
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_PASSWORD: ${PGPASSWORD}
+      POSTGRES_DB: ${PGDATABASE}
+      TZ: Europe/Bucharest
+      PGTZ: Europe/Bucharest
+    ports:
+      - ${PGPORT}:5432
+    volumes:
+      - auth-database:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+        
+  auth-pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "30002:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: test
+      PGADMIN_DEFAULT_PASSWORD: test
+    logging:
+      driver: none
+
+volumes:
+  auth-database:
+
+networks:
+  auth-network:
