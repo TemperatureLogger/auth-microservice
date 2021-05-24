@@ -54,3 +54,46 @@ Same as authorization, but without verifying the expiration of the token.
 
 ## Details about connecting docker containers
 https://www.tutorialworks.com/container-networking/
+
+## routes
+Valid serialNumbers
+```
+INSERT INTO hwAddress (serialNumber) VALUES (995346);
+INSERT INTO hwAddress (serialNumber) VALUES (553123);
+INSERT INTO hwAddress (serialNumber) VALUES (123456);
+INSERT INTO hwAddress (serialNumber) VALUES (999999);
+INSERT INTO hwAddress (serialNumber) VALUES (112991);
+```
+
+Register
+-
+POST localhost:3001/api/users
+```
+{
+    "username":"user1",
+    "password":"parola",
+    "serialNumber": 553123
+}
+```
+Login:
+-
+POST http://localhost:3001/api/users/login
+```
+{
+    "username":"user22",
+    "password":"parola"
+}
+```
+
+Refresh
+-
+GET localhost:3001/api/token/refresh
+AUTHORIZATION: Bearer TOken <Token>
+
+Authorize
+-
+GET localhost:3001/api/token/authorize
+AUTHORIZATION: Bearer Token <Token VALID>
+
+
+
