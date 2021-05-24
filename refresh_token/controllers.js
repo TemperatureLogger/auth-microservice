@@ -39,14 +39,20 @@ Router.get('/authorize', authorizeAndExtract, async (req, res) => {
         serialNumber
     } = req.state.decodedToken;
 
-    console.info(`User id is ${userId}`);
-
     const userSerialNumber = await getSerialNumber(userId);
 
-    res.json({
-        userId,
-        userSerialNumber
-    });
+    if (userSerialNumber ==! serialNumber) {
+        res.json({
+            userId: -1,
+            serialNumber: -1
+        });
+    } else {
+        res.json({
+            userId,
+            serialNumber
+        });
+
+    }
 });
 
 module.exports = Router;

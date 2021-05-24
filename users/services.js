@@ -65,7 +65,7 @@ const login = async (username, plainTextPass) => {
     const {
         id,
         password,
-        serialNumber
+        serialnumber
     } = user[0];
 
     const isCorrect = await compare(plainTextPass, password);
@@ -74,7 +74,7 @@ const login = async (username, plainTextPass) => {
         throw new ServerError('Password is incorrect', 403);
     }
 
-    const token = await generateToken(new Payload(id, serialNumber));
+    const token = await generateToken(new Payload(id, serialnumber));
 
     return token;
 }

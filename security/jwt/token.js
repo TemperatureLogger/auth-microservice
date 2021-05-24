@@ -11,11 +11,11 @@ const generalOptions = {
     audience: 'Users'
 };
 
-const jwtKey = process.env.NODE_ENV === 'development' ?
-            process.env.JWT_SECRET_KEY :
-            getSecret(process.env.JWT_SECRET_KEY_FILE);
+// const jwtKey = process.env.NODE_ENV === 'development' ?
+//             process.env.JWT_SECRET_KEY :
+//             getSecret(process.env.JWT_SECRET_KEY_FILE);
 
-
+const jwtKey = 'secret';
 const generateToken = async (payload) => {
     try {
         const encodingOptions = { ...generalOptions, expiresIn: process.env.JWT_EXPIRE_TIME || '1h'};

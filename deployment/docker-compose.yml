@@ -4,10 +4,12 @@ services:
   auth-service:
     build: '../'
     ports:
-      - "3001:80"
+        - "3001:80"
+    container_name: auth
+    hostname: auth
     environment:
       NODE_ENV: development
-      PGHOST: db
+      PGHOST: auth_db
       PGUSER: ${PGUSER}
       PGPASSWORD: ${PGPASSWORD}
       PGPORT: 5432
@@ -16,10 +18,12 @@ services:
       - ../:/usr/src/app  
     command: ["npm", "run", "start-dev-docker"]
     networks:
-      - auth-network
+      - auth_internal
+      - cluster
 
-  auth-db:
+  auth_db:
     image: postgres
+    container_name: auth_db
     environment:
       POSTGRES_USER: ${PGUSER}
       POSTGRES_PASSWORD: ${PGPASSWORD}
@@ -31,6 +35,8 @@ services:
     volumes:
       - auth-database:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - auth_internal
         
   auth-pgadmin:
     image: dpage/pgadmin4
@@ -41,9 +47,13 @@ services:
       PGADMIN_DEFAULT_PASSWORD: test
     logging:
       driver: none
+    networks:
+      - auth_internal
 
 volumes:
   auth-database:
 
 networks:
-  auth-network:
+  auth_internal:
+  cluster:
+    external: true

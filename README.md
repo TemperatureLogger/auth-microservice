@@ -50,3 +50,7 @@ For authorization, the request contains a Bearer token. This token contains user
 Refresh
 - 
 Same as authorization, but without verifying the expiration of the token.
+
+
+## Details about connecting docker containers
+https://www.tutorialworks.com/container-networking/
