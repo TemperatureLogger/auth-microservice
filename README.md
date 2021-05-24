@@ -19,7 +19,7 @@ Client --------> Measurements
 
 - ruta pentru testare?
 
-Security section is composed from:
+## Security section is composed from:
 - passwords - interaction with passwords
 - jwt - interaction with jwt tokens
 
@@ -32,5 +32,21 @@ Jwt subdirectory contains:
 - models - what i am working with. For a better understanding of the code
 
 
-GET ROLE -- who the fuck are you?
-need to implement a request from database to check if is admin
+## STRUCTURE ---> IMPORTANT
+The Bearer Token contains data about userId and serialNumber.
+
+Register
+-
+When a user try to register, he must provide a serialNumber(which is a hardware address). If the serialNumber exists in hwaddress table from database, then the account will be created.
+
+Login
+-
+On login, credentials are username and password. Next, the crederentials are verified in database and if they are correct, the server returns a token.
+
+Authorize
+- 
+For authorization, the request contains a Bearer token. This token contains userId and serialNumber. If the serialNumber from the token is the same as serialNumber extracted from database, this means that the user has access to the data. The expiration date is verified.
+
+Refresh
+- 
+Same as authorization, but without verifying the expiration of the token.
