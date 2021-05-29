@@ -1,3 +1,6 @@
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS hwAddress;
+
 CREATE TABLE IF NOT EXISTS users (
     id serial PRIMARY KEY,
     username VARCHAR NOT NULL UNIQUE,
