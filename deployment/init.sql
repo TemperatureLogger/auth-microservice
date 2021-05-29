@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS users (
     id serial PRIMARY KEY,
     username VARCHAR NOT NULL UNIQUE,
     password VARCHAR NOT NULL,
-    serialNumber decimal(6) NOT NULL UNIQUE,
+    serialNumber decimal(6) NOT NULL,
     isadmin BOOLEAN NOT NULL DEFAULT false
 );
 
