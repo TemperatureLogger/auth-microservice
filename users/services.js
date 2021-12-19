@@ -79,7 +79,20 @@ const login = async (username, plainTextPass) => {
     return token;
 }
 
+const getUsers = async () => {
+    const users  = await query('SELECT id, username, serialnumber FROM users');
+    return users;
+
+};
+
+const getSerial = async () => {
+    const nr  = await query('SELECT serialnumber FROM hwaddress');
+    return nr;
+
+};
+
 module.exports = {
     register,
-    login
+    login,
+    getUsers
 }

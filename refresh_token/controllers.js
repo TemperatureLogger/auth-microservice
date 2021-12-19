@@ -55,4 +55,27 @@ Router.get('/authorize', authorizeAndExtract, async (req, res) => {
     }
 });
 
+/*
+ * get data for users
+ */
+Router.get('/userDetails', authorizeAndExtract, async (req, res) => {
+    const {
+        userId,
+        serialNumber
+    } = req.state.decodedToken;
+
+    const userSerialNumber = await getSerialNumber(userId);
+
+    if (userSerialNumber ==! serialNumber) {
+        res.json({
+            serialNumber: -1
+        });
+    } else {
+        res.json({
+            serialNumber
+        });
+
+    }
+});
+
 module.exports = Router;
